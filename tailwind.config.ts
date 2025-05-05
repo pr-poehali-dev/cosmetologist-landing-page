@@ -1,12 +1,14 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
 	darkMode: ["class"],
 	content: [
+		"./index.html",
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{js,ts,jsx,tsx}"
 	],
 	prefix: "",
 	theme: {
@@ -53,44 +55,49 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
+					DEFAULT: 'hsl(var(--sidebar-background, 0 0% 100%))',
+					foreground: 'hsl(var(--sidebar-foreground, 240 10% 3.9%))',
 					primary: 'hsl(var(--sidebar-primary))',
 					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
-			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
-			},
-			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
+					accent: {
+						DEFAULT: 'hsl(var(--sidebar-accent, 240 2% 87%))',
+						foreground: 'hsl(var(--sidebar-accent-foreground, 240 5.9% 10%))'
 					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					border: 'hsl(var(--sidebar-border, 240 3.7% 15.9%))',
+					ring: 'hsl(var(--sidebar-ring, 240 4.9% 83.9%))'
 				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
 			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
-		}
-	},
-	plugins: [require("tailwindcss-animate")],
+				borderRadius: {
+					lg: 'var(--radius)',
+					md: 'calc(var(--radius) - 2px)',
+					sm: 'calc(var(--radius) - 4px)'
+				},
+				fontFamily: {
+					sans: ["Inter var", ...fontFamily.sans],
+				},
+				keyframes: {
+					'accordion-down': {
+						from: {
+							height: '0'
+						},
+						to: {
+							height: 'var(--radix-accordion-content-height)'
+						}
+					},
+					'accordion-up': {
+						from: {
+							height: 'var(--radix-accordion-content-height)'
+						},
+						to: {
+							height: '0'
+						}
+					},
+				},
+				animation: {
+					'accordion-down': 'accordion-down 0.2s ease-out',
+					'accordion-up': 'accordion-up 0.2s ease-out'
+				},
+			},
+		},
+		plugins: [require("tailwindcss-animate")],
 } satisfies Config;
